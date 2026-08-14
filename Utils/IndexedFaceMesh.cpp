@@ -17,12 +17,7 @@ IndexedFaceMesh& IndexedFaceMesh::operator=(IndexedFaceMesh const& other)
     for (size_t i(0u); i < m_facesEdges.size(); ++i)
     {
         m_facesEdges[i].resize(m_verticesPerFace);
-#if defined(_MSC_VER)
-        std::copy(other.m_facesEdges[i].data(), other.m_facesEdges[i].data() + m_verticesPerFace,
-            stdext::unchecked_array_iterator<unsigned int*>(m_facesEdges[i].data()));
-#else
         std::copy(other.m_facesEdges[i].data(), other.m_facesEdges[i].data() + m_verticesPerFace, m_facesEdges[i].data());
-#endif	    
     }
 
     m_verticesEdges.resize(other.m_verticesEdges.size());
